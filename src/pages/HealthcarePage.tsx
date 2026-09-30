@@ -2,7 +2,7 @@ import React from 'react';
 import { useCms } from '../cms/cmsStore';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SmartImage } from '../components/SmartImage';
-import fertilityClinicImg from '../assets/images/sda_fertility_clinic_lab_1790749566046.jpg';
+import fertilityClinicImg from '../assets/images/indian_fertility_lab_1790756701079.jpg';
 
 interface HealthcarePageProps {
   onNavigate: (path: string) => void;
@@ -74,8 +74,8 @@ export const HealthcarePage: React.FC<HealthcarePageProps> = ({ onNavigate }) =>
               <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md group group-specular card-elegant-lift">
                 <SmartImage
                   src={fertilityClinicImg}
-                  fallbackSrc="/images/sda_fertility_clinic_lab.jpg"
-                  alt="Modern clean reproductive clinic and embryo lab"
+                  fallbackSrc="/images/indian_fertility_lab.jpg"
+                  alt="Indian fertility specialist doctor and embryologist in clean reproductive clinic and embryo lab"
                   category="clinic"
                   badge="Embryo Lab Standard"
                   caption="Reproductive Laboratory Protocol · Class 10,000 Cleanroom Verification"

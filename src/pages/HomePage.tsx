@@ -5,8 +5,8 @@ import { FunnelCalculator } from '../components/FunnelCalculator';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SmartImage } from '../components/SmartImage';
 import { KineticText, TextShimmer } from '../components/KineticText';
-import doctorHeroImg from '../assets/images/sda_doctor_consultation_1790749551637.jpg';
-import fertilityClinicImg from '../assets/images/sda_fertility_clinic_lab_1790749566046.jpg';
+import doctorHeroImg from '../assets/images/indian_doctor_consult_1790756684335.jpg';
+import fertilityClinicImg from '../assets/images/indian_fertility_lab_1790756701079.jpg';
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -34,8 +34,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {/* Left Column: Outcome Statement */}
             <div className="lg:col-span-7 space-y-6 sm:space-y-8">
               {/* Unboxed Metadata / Eyebrow */}
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-emerald-800 uppercase animate-fade-in-up">
-                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-soft-pulse" />
+              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-[#C2410C] uppercase animate-fade-in-up">
+                <span className="w-2 h-2 rounded-full bg-[#FF6A00] animate-soft-pulse" />
                 <span>{home.hero.eyebrow}</span>
               </div>
 
@@ -59,7 +59,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     'Advanced Diagnostics & Labs',
                     'Healthcare OPD Centers',
                   ]}
-                  className="font-semibold text-emerald-800"
+                  className="font-semibold text-[#EA580C]"
                 />
               </div>
 
@@ -67,7 +67,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 animate-fade-in-up-delay-3">
                 <button
                   onClick={() => onNavigate('/contact')}
-                  className="px-6 py-3.5 text-sm sm:text-base font-semibold text-white bg-neutral-900 hover:bg-neutral-800 active:scale-[0.99] rounded-xl transition-all shadow-sm text-center cursor-pointer"
+                  className="px-6 py-3.5 text-sm sm:text-base font-semibold text-white bg-neutral-900 hover:bg-neutral-800 active:scale-[0.99] rounded-xl transition-all shadow-sm hover:shadow-orange-500/10 text-center cursor-pointer"
                 >
                   {home.hero.primaryCta}
                 </button>
@@ -104,8 +104,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md bg-neutral-100 group group-specular card-elegant-lift">
                 <SmartImage
                   src={doctorHeroImg}
-                  fallbackSrc="/images/sda_doctor_consultation.jpg"
-                  alt="Doctor consulting with a patient in a modern clinical room"
+                  fallbackSrc="/images/indian_doctor_consult.jpg"
+                  alt="Dignified Indian doctor consulting with an Indian patient in a modern clinical room"
                   category="doctor"
                   badge="Verified Clinical Chamber"
                   caption="Audited Doctor Consultation Protocol · High Trust & Dignity · Siliguri Studio"
@@ -352,8 +352,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <div className="mt-12 rounded-2xl overflow-hidden border border-neutral-200 shadow-md relative group group-specular card-elegant-lift">
             <SmartImage
               src={fertilityClinicImg}
-              fallbackSrc="/images/sda_fertility_clinic_lab.jpg"
-              alt="State-of-the-art modern fertility and reproductive clinic interior"
+              fallbackSrc="/images/indian_fertility_lab.jpg"
+              alt="Indian fertility specialist and embryologist in modern IVF clinic lab"
               category="clinic"
               badge="Clean Room Class 10,000"
               caption="Embryology Lab Standards & Patient Trust Center · Audited Clinical Facility"

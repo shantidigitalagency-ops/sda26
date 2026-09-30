@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useCms } from '../cms/cmsStore';
+import { SdaLogo } from './SdaLogo';
 
 interface HeaderProps {
   currentPath: string;
@@ -26,15 +27,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
 
   return (
     <header className="sticky top-0 z-40 bg-[#FAF9F5]/90 backdrop-blur-md border-b border-neutral-200/80 transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-        {/* Zone 1: Single text element wordmark */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        {/* Zone 1: Official Brand Logo with Network Nodes & Beacon */}
         <button
           onClick={() => handleNavClick('/')}
-          className="text-left font-semibold text-lg sm:text-xl tracking-tight text-neutral-900 hover:text-neutral-700 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-2"
+          className="text-left cursor-pointer flex items-center gap-3 py-1 group hover:opacity-95 transition-opacity"
+          aria-label="Shanti Digital Agency Home"
         >
-          <span className="font-extrabold tracking-tighter text-emerald-800">SDA</span>
-          <span className="text-neutral-300 font-light" aria-hidden="true">|</span>
-          <span className="font-medium text-neutral-800 tracking-tight text-sm sm:text-base">Shanti Digital Agency</span>
+          <SdaLogo height={42} variant="full" />
         </button>
 
         {/* Zone 2: 4-6 clean text navigation links */}
@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-neutral-900 rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FF6A00] rounded-full" />
                 )}
               </button>
             );

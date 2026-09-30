@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCms } from '../cms/cmsStore';
+import { SdaLogo } from './SdaLogo';
 
 interface FooterProps {
   onNavigate: (path: string) => void;
@@ -17,13 +18,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     <footer className="bg-neutral-900 text-neutral-300 border-t border-neutral-800 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-neutral-800">
-          {/* Brand Column */}
+          {/* Brand Column with Official SdaLogo */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <span className="font-extrabold text-white text-xl tracking-tight">SDA</span>
-              <span className="text-neutral-600">|</span>
-              <span className="font-medium text-neutral-200 text-base">{content.company.name}</span>
-            </div>
+            <button
+              onClick={() => handleNav('/')}
+              className="text-left cursor-pointer block hover:opacity-95 transition-opacity"
+              aria-label="Shanti Digital Agency"
+            >
+              <SdaLogo height={44} variant="full" theme="dark" />
+            </button>
             <p className="text-sm text-neutral-400 max-w-sm leading-relaxed">
               {content.company.tagline}. We connect marketing, content, advertising, CRM, and appointment conversion into one unified patient acquisition system.
             </p>

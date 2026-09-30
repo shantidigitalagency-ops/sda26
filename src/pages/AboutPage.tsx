@@ -2,7 +2,7 @@ import React from 'react';
 import { useCms } from '../cms/cmsStore';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SmartImage } from '../components/SmartImage';
-import studioImg from '../assets/images/sda_growth_studio_siliguri_1790749575851.jpg';
+import studioImg from '../assets/images/indian_studio_team_1790756716202.jpg';
 
 interface AboutPageProps {
   onNavigate: (path: string) => void;
@@ -68,8 +68,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md group group-specular card-elegant-lift">
                 <SmartImage
                   src={studioImg}
-                  fallbackSrc="/images/sda_growth_studio_siliguri.jpg"
-                  alt="SDA Growth Studio workspace in Siliguri"
+                  fallbackSrc="/images/indian_studio_team.jpg"
+                  alt="SDA Growth Studio Indian team collaborating on healthcare strategy in Siliguri"
                   category="studio"
                   badge="SDA Siliguri Operations"
                   caption="SDA Growth Studio Workspace · Sevoke Road, Siliguri, West Bengal"

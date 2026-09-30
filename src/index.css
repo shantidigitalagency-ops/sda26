@@ -35,7 +35,13 @@
 
 /* Subtle editorial gradient for focal headlines */
 .text-gradient-headline {
-  background: linear-gradient(135deg, #171717 0%, #262626 50%, #064e3b 100%);
+  background: linear-gradient(135deg, #14171F 0%, #262626 55%, #C2410C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #C2410C 0%, #EA580C 50%, #FF6A00 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -59,16 +65,31 @@
 .text-shimmer-subtle {
   background: linear-gradient(
     90deg,
-    #171717 0%,
-    #171717 40%,
-    #059669 50%,
-    #171717 60%,
-    #171717 100%
+    #14171F 0%,
+    #14171F 40%,
+    #EA580C 50%,
+    #14171F 60%,
+    #14171F 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textShimmerWave 9s ease-in-out infinite;
+}
+
+.text-shimmer-orange {
+  background: linear-gradient(
+    90deg,
+    #C2410C 0%,
+    #EA580C 35%,
+    #FF7A00 50%,
+    #EA580C 65%,
+    #C2410C 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmerWave 7s ease-in-out infinite;
 }
 
 .text-shimmer-emerald {
@@ -195,7 +216,7 @@
 
 .card-elegant-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px -12px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
-  border-color: rgba(5, 150, 105, 0.25);
+  box-shadow: 0 16px 36px -12px rgba(255, 106, 0, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  border-color: rgba(255, 106, 0, 0.32);
 }
 

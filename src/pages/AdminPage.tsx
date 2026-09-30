@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCms } from '../cms/cmsStore';
 import { CmsContent } from '../cms/types';
+import { SdaLogo } from '../components/SdaLogo';
 
 interface AdminPageProps {
   onNavigate: (path: string) => void;
@@ -491,10 +492,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
       <div className="min-h-screen bg-[#FAF9F5] flex flex-col justify-center items-center px-4 sm:px-6">
         <div className="w-full max-w-md bg-white rounded-2xl border border-neutral-200/90 p-8 sm:p-10 shadow-sm">
           <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <span className="font-extrabold text-2xl tracking-tight text-emerald-800">SDA</span>
-              <span className="text-neutral-300 font-light text-lg">|</span>
-              <span className="font-semibold text-neutral-800 tracking-tight text-base">Backend Portal</span>
+            <div className="flex items-center justify-center mb-4">
+              <SdaLogo height={48} variant="full" />
             </div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900">
               Admin Authentication
@@ -577,10 +576,10 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
       <header className="sticky top-0 z-30 bg-neutral-900 text-white border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="font-extrabold text-emerald-400 text-lg tracking-tight">SDA</span>
+            <SdaLogo height={32} variant="full" theme="dark" />
             <span className="text-neutral-600">|</span>
-            <span className="font-semibold text-sm tracking-tight text-neutral-100">
-              Admin Panel &amp; CMS Studio
+            <span className="font-semibold text-sm tracking-tight text-neutral-100 hidden sm:inline">
+              Admin &amp; CMS Studio
             </span>
             <span className="hidden md:inline text-xs text-neutral-400 bg-neutral-800 px-2 py-0.5 rounded font-mono">
               /admin
@@ -1827,7 +1826,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                           alt={m.title || m.filename}
                           className="w-full h-36 object-cover rounded-lg bg-neutral-100"
                           onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src = '/images/sda_doctor_consultation.jpg';
+                            (e.currentTarget as HTMLImageElement).src = '/images/indian_doctor_consult.jpg';
                           }}
                         />
                         <div>

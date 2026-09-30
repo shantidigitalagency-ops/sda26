@@ -68,39 +68,39 @@
   "media": [
     {
       "id": "med-01",
-      "filename": "sda_doctor_consultation.jpg",
-      "url": "/src/assets/images/sda_doctor_consultation_1790749551637.jpg",
+      "filename": "indian_doctor_consult.jpg",
+      "url": "/src/assets/images/indian_doctor_consult_1790756684335.jpg",
       "type": "image",
       "mimeType": "image/jpeg",
       "size": 142000,
-      "altText": "Doctor reviewing medical cases in clinical consultation room",
-      "title": "Clinical Consultation Hero",
+      "altText": "Dignified Indian doctor consulting with an Indian patient in a modern clinical room",
+      "title": "Indian Clinical Consultation Hero",
       "createdAt": "2026-09-30T06:51:49.059Z",
-      "updatedAt": "2026-09-30T06:51:49.059Z"
+      "updatedAt": "2026-09-30T08:25:00.000Z"
     },
     {
       "id": "med-02",
-      "filename": "sda_fertility_clinic_lab.jpg",
-      "url": "/src/assets/images/sda_fertility_clinic_lab_1790749566046.jpg",
+      "filename": "indian_fertility_lab.jpg",
+      "url": "/src/assets/images/indian_fertility_lab_1790756701079.jpg",
       "type": "image",
       "mimeType": "image/jpeg",
       "size": 185000,
-      "altText": "Modern embryology and IVF clinic facility interior",
-      "title": "Fertility Clinic Interior",
+      "altText": "Indian fertility specialist and embryologist in modern IVF clinic lab",
+      "title": "Indian Fertility & Embryo Clinic",
       "createdAt": "2026-09-30T06:51:49.059Z",
-      "updatedAt": "2026-09-30T06:51:49.059Z"
+      "updatedAt": "2026-09-30T08:25:00.000Z"
     },
     {
       "id": "med-03",
-      "filename": "sda_growth_studio_siliguri.jpg",
-      "url": "/src/assets/images/sda_growth_studio_siliguri_1790749575851.jpg",
+      "filename": "indian_studio_team.jpg",
+      "url": "/src/assets/images/indian_studio_team_1790756716202.jpg",
       "type": "image",
       "mimeType": "image/jpeg",
       "size": 165000,
-      "altText": "SDA Digital Operations Studio, Siliguri",
-      "title": "Siliguri Strategy Studio",
+      "altText": "SDA Digital Operations Indian Strategy Team, Siliguri",
+      "title": "Siliguri Strategy Studio Team",
       "createdAt": "2026-09-30T06:51:49.059Z",
-      "updatedAt": "2026-09-30T06:51:49.059Z"
+      "updatedAt": "2026-09-30T08:25:00.000Z"
     }
   ],
   "activityLogs": [

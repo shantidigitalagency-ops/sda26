@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SmartImage } from '../components/SmartImage';
-import doctorHeroImg from '../assets/images/sda_doctor_consultation_1790749551637.jpg';
+import doctorHeroImg from '../assets/images/indian_doctor_consult_1790756684335.jpg';
 
 interface ContentPageProps {
   onNavigate: (path: string) => void;
@@ -70,8 +70,8 @@ export const ContentPage: React.FC<ContentPageProps> = ({ onNavigate }) => {
               <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md group group-specular card-elegant-lift">
                 <SmartImage
                   src={doctorHeroImg}
-                  fallbackSrc="/images/sda_doctor_consultation.jpg"
-                  alt="Doctor consulting with medical authority"
+                  fallbackSrc="/images/indian_doctor_consult.jpg"
+                  alt="Indian senior doctor consulting with patient in medical chamber"
                   category="doctor"
                   badge="Medical Authority Production"
                   caption="Clinical Communication Framework · Chamber Videography Protocol"
