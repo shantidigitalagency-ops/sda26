@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 className={`transition-colors whitespace-nowrap py-1 relative cursor-pointer ${
                   isActive
                     ? 'text-neutral-950 font-semibold'
-                    : 'text-neutral-600 hover:text-neutral-900'
+                    : 'text-neutral-600 hover:text-neutral-900 link-editorial'
                 }`}
               >
                 {link.label}

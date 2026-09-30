@@ -13,13 +13,14 @@ export const ContentPage: React.FC<ContentPageProps> = ({ onNavigate }) => {
       <section className="pt-16 pb-20 border-b border-neutral-200/80 bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-              System Component 02
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800 animate-fade-in-up">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-soft-pulse" />
+              <span>System Component 02</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance text-gradient-headline animate-fade-in-up-delay-1">
               Doctor Authority &amp; Clinical Content
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed">
+            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed animate-fade-in-up-delay-2">
               We produce zero festival graphics or generic quotes. We create clinical video assets that establish your senior consultants as the undisputed medical authorities in your region.
             </p>
           </div>
@@ -34,7 +35,7 @@ export const ContentPage: React.FC<ContentPageProps> = ({ onNavigate }) => {
               <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">
                 THE PATIENT TRUST MATRIX
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900 text-gradient-headline">
                 Why Doctor Videos Convert When Graphics Fail
               </h2>
               <p className="text-sm text-neutral-600 leading-relaxed">
@@ -42,21 +43,21 @@ export const ContentPage: React.FC<ContentPageProps> = ({ onNavigate }) => {
               </p>
 
               <div className="space-y-4 pt-2">
-                <div className="p-4 rounded-xl bg-[#FAF9F5] border border-neutral-200 text-xs">
+                <div className="p-4 rounded-xl bg-[#FAF9F5] border border-neutral-200 text-xs card-elegant-lift">
                   <strong className="block text-sm text-neutral-900 mb-1">1. Condition Explainer Videos</strong>
                   <p className="text-neutral-600">
                     2 to 3 minute focused walkthroughs answering specific patient questions: <em>"When is IVF actually necessary?", "What happens during a robotic knee replacement?", "Are fibroids dangerous?"</em>
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#FAF9F5] border border-neutral-200 text-xs">
+                <div className="p-4 rounded-xl bg-[#FAF9F5] border border-neutral-200 text-xs card-elegant-lift">
                   <strong className="block text-sm text-neutral-900 mb-1">2. Procedure Transparency Walkthroughs</strong>
                   <p className="text-neutral-600">
                     Showcasing clinic hygiene, OT standards, anesthesia safety protocols, and post-operative recovery timelines.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#FAF9F5] border border-neutral-200 text-xs">
+                <div className="p-4 rounded-xl bg-[#FAF9F5] border border-neutral-200 text-xs card-elegant-lift">
                   <strong className="block text-sm text-neutral-900 mb-1">3. Reputation &amp; Google Review Protocols</strong>
                   <p className="text-neutral-600">
                     Systematic post-discharge review capture that builds genuine 4.8+ Google Maps ratings without spam or fake testimonials.
@@ -66,12 +67,14 @@ export const ContentPage: React.FC<ContentPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="lg:col-span-6">
-              <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
+              <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md group group-specular card-elegant-lift">
                 <SmartImage
                   src={doctorHeroImg}
                   fallbackSrc="/images/sda_doctor_consultation.jpg"
                   alt="Doctor consulting with medical authority"
                   category="doctor"
+                  badge="Medical Authority Production"
+                  caption="Clinical Communication Framework · Chamber Videography Protocol"
                   className="w-full h-[440px] object-cover"
                 />
               </div>

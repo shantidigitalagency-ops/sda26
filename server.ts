@@ -22,6 +22,7 @@ async function startServer() {
 
   // Static assets serving
   app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
+  app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
   app.use('/src/assets/images', express.static(path.join(__dirname, 'src', 'assets', 'images')));
   app.use(express.static(path.join(__dirname, 'public')));
 

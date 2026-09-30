@@ -16,13 +16,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
       <section className="pt-16 pb-20 border-b border-neutral-200/80 bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-              The SDA Philosophy
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800 animate-fade-in-up">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-soft-pulse" />
+              <span>The SDA Philosophy</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance text-gradient-headline animate-fade-in-up-delay-1">
               We Believe Marketing Should Work as a System.
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed">
+            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed animate-fade-in-up-delay-2">
               We did not build another generic digital agency selling random social posts. We built the operating system that turns clinical attention into confirmed patient appointments.
             </p>
           </div>
@@ -34,7 +35,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <h2 className="text-3xl font-extrabold tracking-tight text-neutral-900">
+              <h2 className="text-3xl font-extrabold tracking-tight text-neutral-900 text-gradient-headline">
                 The Objective Is Not More Activity. The Objective Is Measurable Patient Growth.
               </h2>
               <p className="text-neutral-600 leading-relaxed text-base">
@@ -44,7 +45,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 Shanti Digital Agency (SDA) was founded on the conviction that healthcare practices do not need more noise. They need a connected, accountable operating system:
               </p>
 
-              <div className="p-6 rounded-2xl bg-[#FAF9F5] border border-neutral-200 text-sm space-y-2">
+              <div className="p-6 rounded-2xl bg-[#FAF9F5] border border-neutral-200 text-sm space-y-2 card-elegant-lift">
                 <div className="font-bold text-neutral-900">What SDA Brings Together Into One Unified System:</div>
                 <div className="grid grid-cols-2 gap-2 text-xs text-neutral-700 pt-2 font-medium">
                   <div>• Medical Market Strategy</div>
@@ -64,16 +65,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
+              <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md group group-specular card-elegant-lift">
                 <SmartImage
                   src={studioImg}
                   fallbackSrc="/images/sda_growth_studio_siliguri.jpg"
                   alt="SDA Growth Studio workspace in Siliguri"
                   category="studio"
+                  badge="SDA Siliguri Operations"
+                  caption="SDA Growth Studio Workspace · Sevoke Road, Siliguri, West Bengal"
                   className="w-full h-[420px] object-cover"
                 />
               </div>
-              <div className="text-xs text-neutral-400 mt-2 text-center">
+              <div className="text-xs text-neutral-400 mt-2 text-center font-mono">
                 SDA Operations Hub · Sevoke Road, Siliguri, West Bengal
               </div>
             </div>

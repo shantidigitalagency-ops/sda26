@@ -4,6 +4,7 @@ import { InteractiveSystemFlow } from '../components/InteractiveSystemFlow';
 import { FunnelCalculator } from '../components/FunnelCalculator';
 import { ConsultationForm } from '../components/ConsultationForm';
 import { SmartImage } from '../components/SmartImage';
+import { KineticText, TextShimmer } from '../components/KineticText';
 import doctorHeroImg from '../assets/images/sda_doctor_consultation_1790749551637.jpg';
 import fertilityClinicImg from '../assets/images/sda_fertility_clinic_lab_1790749566046.jpg';
 
@@ -33,22 +34,37 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {/* Left Column: Outcome Statement */}
             <div className="lg:col-span-7 space-y-6 sm:space-y-8">
               {/* Unboxed Metadata / Eyebrow */}
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-emerald-800 uppercase">
+              <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-emerald-800 uppercase animate-fade-in-up">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-soft-pulse" />
                 <span>{home.hero.eyebrow}</span>
               </div>
 
-              {/* Primary Headline */}
-              <h1 className="text-4xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-neutral-900 leading-[1.08] text-balance">
+              {/* Primary Headline with Subtle Editorial Gradient */}
+              <h1 className="text-4xl sm:text-6xl lg:text-[68px] font-extrabold tracking-tight text-neutral-900 leading-[1.08] text-balance text-gradient-headline animate-fade-in-up-delay-1">
                 {home.hero.title}
               </h1>
 
               {/* Supporting Copy */}
-              <p className="text-lg sm:text-xl text-neutral-600 font-normal leading-relaxed max-w-2xl">
+              <p className="text-lg sm:text-xl text-neutral-600 font-normal leading-relaxed max-w-2xl animate-fade-in-up-delay-2">
                 {home.hero.description}
               </p>
 
+              {/* Subtle Dynamic Kinetic Specialization Indicator */}
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-neutral-500 font-mono animate-fade-in-up-delay-2 pt-0.5">
+                <span className="text-neutral-400">Tailored For:</span>
+                <KineticText
+                  phrases={[
+                    'Fertility & IVF Practices',
+                    'Specialized Surgeons & Clinics',
+                    'Advanced Diagnostics & Labs',
+                    'Healthcare OPD Centers',
+                  ]}
+                  className="font-semibold text-emerald-800"
+                />
+              </div>
+
               {/* Actions + WhatsApp CTA */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 animate-fade-in-up-delay-3">
                 <button
                   onClick={() => onNavigate('/contact')}
                   className="px-6 py-3.5 text-sm sm:text-base font-semibold text-white bg-neutral-900 hover:bg-neutral-800 active:scale-[0.99] rounded-xl transition-all shadow-sm text-center cursor-pointer"
@@ -83,19 +99,21 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Right Column: Hero Visual Photography & Flow Miniature */}
+            {/* Right Column: Hero Visual Photography with Specular Reflection & Lightbox */}
             <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md bg-neutral-100 group">
+              <div className="relative rounded-2xl overflow-hidden border border-neutral-200 shadow-md bg-neutral-100 group group-specular card-elegant-lift">
                 <SmartImage
                   src={doctorHeroImg}
                   fallbackSrc="/images/sda_doctor_consultation.jpg"
                   alt="Doctor consulting with a patient in a modern clinical room"
                   category="doctor"
-                  className="w-full h-[380px] sm:h-[460px] object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+                  badge="Verified Clinical Chamber"
+                  caption="Audited Doctor Consultation Protocol · High Trust & Dignity · Siliguri Studio"
+                  className="w-full h-[380px] sm:h-[460px] object-cover object-center"
                 />
 
                 {/* Overlaid Minimalist System Indicator */}
-                <div className="absolute inset-x-4 bottom-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-neutral-200/90 shadow-lg text-xs space-y-2">
+                <div className="absolute inset-x-4 bottom-4 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-neutral-200/90 shadow-lg text-xs space-y-2 pointer-events-auto">
                   <div className="flex items-center justify-between font-mono text-[10px] text-neutral-500 uppercase tracking-wider">
                     <span>SDA Architecture</span>
                     <span className="text-emerald-700 font-bold">Closed-Loop</span>
@@ -331,20 +349,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Visual Showcase Card for IVF / Clinic */}
-          <div className="mt-12 rounded-2xl overflow-hidden border border-neutral-200 relative group">
+          <div className="mt-12 rounded-2xl overflow-hidden border border-neutral-200 shadow-md relative group group-specular card-elegant-lift">
             <SmartImage
               src={fertilityClinicImg}
               fallbackSrc="/images/sda_fertility_clinic_lab.jpg"
               alt="State-of-the-art modern fertility and reproductive clinic interior"
               category="clinic"
-              className="w-full h-64 sm:h-80 object-cover object-center group-hover:scale-[1.01] transition-transform duration-500"
+              badge="Clean Room Class 10,000"
+              caption="Embryology Lab Standards & Patient Trust Center · Audited Clinical Facility"
+              className="w-full h-72 sm:h-96 object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/30 to-transparent flex items-end p-6 sm:p-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/85 via-neutral-950/35 to-transparent flex items-end p-6 sm:p-8 pointer-events-none">
               <div className="text-white max-w-xl">
-                <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider">
-                  Clinical Standards
+                <span className="text-xs font-mono text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Clinical Standards &amp; Dignity
                 </span>
-                <h4 className="text-lg sm:text-xl font-bold mt-1">
+                <h4 className="text-lg sm:text-2xl font-bold mt-1 text-white leading-snug">
                   Built to reflect medical excellence, emotional dignity, and procedural trust.
                 </h4>
               </div>

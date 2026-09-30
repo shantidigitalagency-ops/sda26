@@ -14,13 +14,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
       <section className="pt-16 pb-20 border-b border-neutral-200/80 bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-              Direct Strategic Intake
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800 animate-fade-in-up">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-soft-pulse" />
+              <span>Direct Strategic Intake</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance text-gradient-headline animate-fade-in-up-delay-1">
               Request a Growth Consultation
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed">
+            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed animate-fade-in-up-delay-2">
               Let us analyze your clinic's regional patient catchment, identify where prospective appointments are leaking, and demonstrate how the SDA Patient Growth System™ works for your specialty.
             </p>
           </div>
@@ -32,7 +33,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left: Contact Info & Expectations */}
             <div className="lg:col-span-4 space-y-8">
-              <div className="p-6 rounded-2xl bg-[#FAF9F5] border border-neutral-200 space-y-4">
+              <div className="p-6 rounded-2xl bg-[#FAF9F5] border border-neutral-200 space-y-4 card-elegant-lift">
                 <h3 className="text-lg font-bold text-neutral-900">
                   Direct Clinic Inquiries
                 </h3>

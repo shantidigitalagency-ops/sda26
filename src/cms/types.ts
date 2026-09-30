@@ -69,6 +69,7 @@ export interface ConsultationSubmission {
   mainGrowthChallenge: string;
   submittedAt: string;
   status: 'new' | 'contacted' | 'audit_prepared';
+  internalNotes?: string;
 }
 
 export interface CmsContent {

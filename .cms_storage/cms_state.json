@@ -11,6 +11,24 @@
   "pageSections": {},
   "leads": [
     {
+      "id": "lead-1790754591983",
+      "name": "Dr. Ananya Roy",
+      "businessName": "Siliguri IVF & Gynecology",
+      "phone": "+91 89440 83896",
+      "email": "drananya@example.com",
+      "city": "Siliguri",
+      "businessType": "IVF & Fertility Clinic",
+      "monthlyBudget": "₹50,000 - ₹1,00,000",
+      "currentChannels": [
+        "Meta Ads"
+      ],
+      "mainGrowthChallenge": "Low show-up rate for preliminary fertility OPD.",
+      "status": "NEW",
+      "source": "Website Consultation Intake",
+      "createdAt": "2026-09-30T07:49:51.983Z",
+      "updatedAt": "2026-09-30T07:49:51.983Z"
+    },
+    {
       "id": "lead-sample-01",
       "name": "Dr. A. Sengupta",
       "businessName": "Siliguri Women Care & Fertility",

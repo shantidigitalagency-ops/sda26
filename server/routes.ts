@@ -1,5 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import path from 'path';
 import {
   authenticateUser,
   getPageSections,
@@ -8,10 +10,20 @@ import {
   getLeads,
   createLead,
   updateLeadStatus,
+  deleteLeadRecord,
+  addLeadNote,
   getMediaLibrary,
   addMediaRecord,
+  deleteMediaRecord,
   getRevisions,
+  rollbackRevision,
   getActivityLogs,
+  getGlobalSettings,
+  updateGlobalSettings,
+  getBackendHealth,
+  getAdminStats,
+  getFullDatabaseDump,
+  restoreDatabaseDump,
 } from './db.ts';
 
 const JWT_SECRET = process.env.JWT_SECRET || process.env.AUTH_SECRET || 'sda-jwt-super-secret-key-2026';
@@ -240,17 +252,36 @@ export function registerCmsApiRoutes(app: express.Application) {
 
   app.post('/api/admin/media/upload', requireAdminAuth, async (req: AuthRequest, res: Response) => {
     try {
-      const { filename, url, type, mimeType, size, altText, title, description } = req.body;
-      if (!filename || !url) {
-        return res.status(400).json({ error: 'Filename and URL are required' });
+      const { filename, url, base64Data, type, mimeType, size, altText, title, description } = req.body;
+      let finalUrl = url;
+
+      // Handle direct base64 uploads: write to public/uploads
+      if (base64Data && typeof base64Data === 'string') {
+        const uploadsDir = path.resolve(process.cwd(), 'public', 'uploads');
+        if (!fs.existsSync(uploadsDir)) {
+          fs.mkdirSync(uploadsDir, { recursive: true });
+        }
+
+        const safeFilename = `${Date.now()}-${(filename || 'asset').replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+        const filePath = path.join(uploadsDir, safeFilename);
+
+        // Strip data:image/...;base64, prefix if present
+        const cleanBase64 = base64Data.replace(/^data:[a-zA-Z0-9/+-]+;base64,/, '');
+        fs.writeFileSync(filePath, Buffer.from(cleanBase64, 'base64'));
+
+        finalUrl = `/uploads/${safeFilename}`;
+      }
+
+      if (!filename || !finalUrl) {
+        return res.status(400).json({ error: 'Filename and either URL or base64Data are required' });
       }
 
       const media = await addMediaRecord({
         filename,
-        url,
+        url: finalUrl,
         type: type || (mimeType?.startsWith('video/') ? 'video' : 'image'),
         mimeType: mimeType || 'image/jpeg',
-        size: size || 1024,
+        size: size || (base64Data ? Math.round(base64Data.length * 0.75) : 1024),
         altText,
         title,
         description,
@@ -258,11 +289,47 @@ export function registerCmsApiRoutes(app: express.Application) {
 
       res.json({ success: true, media });
     } catch (err: any) {
+      console.error('Upload error:', err);
       res.status(500).json({ error: 'Failed to record uploaded media' });
     }
   });
 
-  // 9. Revision History & Audit Logs
+  app.delete('/api/admin/media/:id', requireAdminAuth, async (req: AuthRequest, res: Response) => {
+    try {
+      const { id } = req.params;
+      await deleteMediaRecord(id);
+      res.json({ success: true, message: `Media asset ${id} deleted` });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to delete media asset' });
+    }
+  });
+
+  // Lead Operations: Add Note & Delete
+  app.post('/api/admin/leads/:id/notes', requireAdminAuth, async (req: AuthRequest, res: Response) => {
+    try {
+      const { id } = req.params;
+      const { noteText } = req.body;
+      if (!noteText) {
+        return res.status(400).json({ error: 'noteText is required' });
+      }
+      const updated = await addLeadNote(id, noteText, req.user?.name || req.user?.username || 'admin');
+      res.json({ success: true, lead: updated });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to add consultation note' });
+    }
+  });
+
+  app.delete('/api/admin/leads/:id', requireAdminAuth, async (req: AuthRequest, res: Response) => {
+    try {
+      const { id } = req.params;
+      await deleteLeadRecord(id);
+      res.json({ success: true, message: `Lead ${id} removed` });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to delete lead' });
+    }
+  });
+
+  // 9. Revision History, Rollback & Audit Logs
   app.get('/api/admin/revisions', requireAdminAuth, async (req: AuthRequest, res: Response) => {
     try {
       const { contentType, contentId } = req.query;
@@ -273,12 +340,85 @@ export function registerCmsApiRoutes(app: express.Application) {
     }
   });
 
+  app.post('/api/admin/revisions/:id/rollback', requireAdminAuth, async (req: AuthRequest, res: Response) => {
+    try {
+      const { id } = req.params;
+      const result = await rollbackRevision(id, req.user?.id);
+      res.json({ success: true, message: 'Revision rolled back successfully', result });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message || 'Failed to rollback revision' });
+    }
+  });
+
   app.get('/api/admin/activity-logs', requireAdminAuth, async (req: AuthRequest, res: Response) => {
     try {
       const logs = await getActivityLogs();
       res.json(logs);
     } catch (err: any) {
       res.status(500).json({ error: 'Failed to fetch activity logs' });
+    }
+  });
+
+  // 10. Global Settings API
+  app.get('/api/admin/settings', requireAdminAuth, async (req: AuthRequest, res: Response) => {
+    try {
+      const settings = await getGlobalSettings();
+      res.json(settings);
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to fetch global settings' });
+    }
+  });
+
+  app.put('/api/admin/settings', requireAdminAuth, async (req: AuthRequest, res: Response) => {
+    try {
+      const settings = await updateGlobalSettings(req.body, req.user?.id);
+      res.json({ success: true, settings });
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to update global settings' });
+    }
+  });
+
+  // 11. Backend Diagnostics, Health & Analytics
+  app.get('/api/health', async (_req: Request, res: Response) => {
+    try {
+      const health = await getBackendHealth();
+      res.json(health);
+    } catch (err: any) {
+      res.status(500).json({ status: 'unhealthy', error: err.message });
+    }
+  });
+
+  app.get('/api/admin/stats', requireAdminAuth, async (_req: AuthRequest, res: Response) => {
+    try {
+      const stats = await getAdminStats();
+      res.json(stats);
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to calculate stats' });
+    }
+  });
+
+  app.get('/api/admin/me', requireAdminAuth, async (req: AuthRequest, res: Response) => {
+    res.json({ user: req.user });
+  });
+
+  // 12. Full Database Backup & Restore API
+  app.get('/api/admin/backup', requireAdminAuth, async (_req: AuthRequest, res: Response) => {
+    try {
+      const dump = getFullDatabaseDump();
+      res.setHeader('Content-Disposition', `attachment; filename="sda_backup_${new Date().toISOString().slice(0, 10)}.json"`);
+      res.setHeader('Content-Type', 'application/json');
+      res.json(dump);
+    } catch (err: any) {
+      res.status(500).json({ error: 'Failed to generate database dump' });
+    }
+  });
+
+  app.post('/api/admin/restore', requireAdminAuth, async (req: AuthRequest, res: Response) => {
+    try {
+      const result = restoreDatabaseDump(req.body);
+      res.json(result);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message || 'Failed to restore database dump' });
     }
   });
 }

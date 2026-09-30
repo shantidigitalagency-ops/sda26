@@ -15,13 +15,14 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ onNavigate }) 
       <section className="pt-16 pb-20 border-b border-neutral-200/80 bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-              Evidence &amp; Methodology
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800 animate-fade-in-up">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-soft-pulse" />
+              <span>Evidence &amp; Methodology</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance text-gradient-headline animate-fade-in-up-delay-1">
               Proof Matters.
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed">
+            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed animate-fade-in-up-delay-2">
               We do not publish vanity screenshots of impressions or fabricated testimonial quotes. Below are data-driven performance models, verified campaign economics, and audited clinical outcomes.
             </p>
             <p className="text-xs text-neutral-400 mt-3 italic">
@@ -37,7 +38,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ onNavigate }) 
           {items.map((cs) => (
             <div
               key={cs.id}
-              className="p-8 sm:p-12 rounded-2xl bg-[#FAF9F5] border border-neutral-200/90 shadow-xs"
+              className="p-8 sm:p-12 rounded-2xl bg-[#FAF9F5] border border-neutral-200/90 shadow-xs card-elegant-lift group"
             >
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-neutral-200/80 pb-6 mb-8">
                 <div>
@@ -46,7 +47,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ onNavigate }) 
                     <span>·</span>
                     <span>{cs.location}</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900">
+                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 group-hover:text-emerald-950 transition-colors">
                     {cs.title}
                   </h2>
                 </div>
@@ -60,13 +61,13 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ onNavigate }) 
 
               {/* Challenge vs Strategy */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 text-sm">
-                <div className="p-5 bg-white rounded-xl border border-neutral-200/80">
+                <div className="p-5 bg-white rounded-xl border border-neutral-200/80 card-elegant-lift">
                   <span className="text-xs font-semibold uppercase tracking-wider text-rose-700 block mb-2">
                     The Initial Bottleneck
                   </span>
                   <p className="text-neutral-700 leading-relaxed">{cs.challenge}</p>
                 </div>
-                <div className="p-5 bg-white rounded-xl border border-emerald-200/80">
+                <div className="p-5 bg-white rounded-xl border border-emerald-200/80 card-elegant-lift">
                   <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800 block mb-2">
                     The Growth System Strategy
                   </span>
@@ -81,7 +82,7 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ onNavigate }) 
                 </span>
                 <div className="flex flex-wrap gap-2 text-xs">
                   {cs.channels.map((ch, i) => (
-                    <span key={i} className="px-3 py-1 bg-white border border-neutral-200 rounded-md font-medium text-neutral-700">
+                    <span key={i} className="px-3 py-1 bg-white border border-neutral-200 rounded-md font-medium text-neutral-700 hover:border-emerald-500/50 transition-colors">
                       {ch}
                     </span>
                   ))}
@@ -95,8 +96,8 @@ export const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ onNavigate }) 
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                   {cs.metrics.map((m, idx) => (
-                    <div key={idx}>
-                      <div className="text-2xl sm:text-3xl font-extrabold font-mono text-neutral-900 tabular-nums">
+                    <div key={idx} className="group/metric">
+                      <div className="text-2xl sm:text-3xl font-extrabold font-mono text-neutral-900 group-hover/metric:text-emerald-800 transition-colors tabular-nums">
                         {m.value}
                       </div>
                       <div className="text-xs font-semibold text-neutral-700 mt-1">{m.label}</div>

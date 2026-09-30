@@ -17,13 +17,14 @@ export const HealthcarePage: React.FC<HealthcarePageProps> = ({ onNavigate }) =>
       <section className="pt-16 pb-20 border-b border-neutral-200/80 bg-[#FAF9F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
-              Primary Practice Specialization
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-800 animate-fade-in-up">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-soft-pulse" />
+              <span>Primary Practice Specialization</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-900 mt-2 text-balance text-gradient-headline animate-fade-in-up-delay-1">
               Healthcare &amp; Fertility Patient Growth
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed">
+            <p className="text-lg sm:text-xl text-neutral-600 mt-4 leading-relaxed animate-fade-in-up-delay-2">
               Medical decisions are founded on deep emotional trust, procedural transparency, and counselor responsiveness. We do not apply generic consumer agency playbooks to healthcare.
             </p>
           </div>
@@ -38,7 +39,7 @@ export const HealthcarePage: React.FC<HealthcarePageProps> = ({ onNavigate }) =>
               <span className="text-xs font-mono font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded">
                 FLAGSHIP SPECIALTY
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900 text-gradient-headline">
                 IVF &amp; Reproductive Fertility Clinics
               </h2>
               <p className="text-base text-neutral-600 leading-relaxed">
@@ -46,21 +47,21 @@ export const HealthcarePage: React.FC<HealthcarePageProps> = ({ onNavigate }) =>
               </p>
 
               <div className="space-y-4 pt-2">
-                <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-sm">
+                <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-sm card-elegant-lift">
                   <h4 className="font-bold text-neutral-900 mb-1">Doctor Authority Video Education</h4>
                   <p className="text-neutral-600 text-xs leading-relaxed">
                     We script and guide clinical video explainers on AMH levels, IVF vs IUI, and embryo quality that demystify treatment and establish your medical team as trusted guides.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-sm">
+                <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-sm card-elegant-lift">
                   <h4 className="font-bold text-neutral-900 mb-1">Discreet WhatsApp Counselor Triage</h4>
                   <p className="text-neutral-600 text-xs leading-relaxed">
                     Patients prefer text messaging over phone calls during early inquiry phases. Our WhatsApp automations provide compassionate, non-intrusive responses with clinic timings.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-sm">
+                <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 text-sm card-elegant-lift">
                   <h4 className="font-bold text-neutral-900 mb-1">High Show-Up Consultation Protocols</h4>
                   <p className="text-neutral-600 text-xs leading-relaxed">
                     We implement pre-consultation educational prep and 2-step confirmations that decrease fertility OPD no-shows by up to 40%.
@@ -70,12 +71,14 @@ export const HealthcarePage: React.FC<HealthcarePageProps> = ({ onNavigate }) =>
             </div>
 
             <div className="lg:col-span-6">
-              <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
+              <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md group group-specular card-elegant-lift">
                 <SmartImage
                   src={fertilityClinicImg}
                   fallbackSrc="/images/sda_fertility_clinic_lab.jpg"
                   alt="Modern clean reproductive clinic and embryo lab"
                   category="clinic"
+                  badge="Embryo Lab Standard"
+                  caption="Reproductive Laboratory Protocol · Class 10,000 Cleanroom Verification"
                   className="w-full h-[400px] object-cover"
                 />
               </div>
