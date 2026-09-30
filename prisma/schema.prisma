@@ -1,0 +1,258 @@
+// Prisma Schema for Shanti Digital Agency (SDA) CMS
+// Database: PostgreSQL
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+}
+
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  AUDIT_PREPARED
+  WON
+  LOST
+}
+
+model User {
+  id           String        @id @default(uuid())
+  username     String        @unique
+  email        String?       @unique
+  passwordHash String
+  name         String
+  role         Role          @default(ADMIN)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  activities   ActivityLog[]
+  revisions    Revision[]
+
+  @@map("users")
+}
+
+model Page {
+  id               String        @id @default(uuid())
+  slug             String        @unique // e.g. "home", "healthcare", "patient-growth-system"
+  title            String
+  description      String?
+  sections         PageSection[]
+  revisions        Revision[]
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  publishedAt      DateTime?
+
+  @@map("pages")
+}
+
+model PageSection {
+  id               String        @id @default(uuid())
+  pageId           String
+  page             Page          @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  sectionKey       String        // e.g. "hero", "problem", "cta", "system"
+  order            Int           @default(0)
+  draftContent     Json          // Content in editing / draft state
+  publishedContent Json?         // Content rendered publicly on live website
+  status           PublishStatus @default(PUBLISHED)
+  version          Int           @default(1)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@unique([pageId, sectionKey])
+  @@index([pageId, sectionKey])
+  @@map("page_sections")
+}
+
+model Solution {
+  id               String        @id @default(uuid())
+  number           String        // e.g. "01", "02"
+  title            String
+  subtitle         String
+  description      String
+  items            Json          // Array of string deliverables
+  order            Int           @default(0)
+  status           PublishStatus @default(PUBLISHED)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("solutions")
+}
+
+model SystemStep {
+  id               String        @id @default(uuid())
+  stepNumber       String        // e.g. "01", "02"
+  title            String        // ATTRACT, BUILD TRUST, etc.
+  subtitle         String
+  description      String
+  tools            Json          // Array of strings
+  metrics          Json          // Array of strings
+  order            Int           @default(0)
+  status           PublishStatus @default(PUBLISHED)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("system_steps")
+}
+
+model HealthcareCategory {
+  id               String        @id @default(uuid())
+  title            String        // e.g. "For IVF & Fertility Clinics"
+  focus            String
+  painPoint        String
+  solution         String
+  keyMetric        String
+  order            Int           @default(0)
+  status           PublishStatus @default(PUBLISHED)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("healthcare_categories")
+}
+
+model CaseStudy {
+  id               String        @id @default(uuid())
+  title            String
+  clientType       String
+  location         String
+  challenge        String
+  strategy         String
+  channels         Json          // Array of string channels
+  metrics          Json          // Array of { label, value, sublabel }
+  outcome          String
+  clientQuoteText  String?
+  clientQuoteAuthor String?
+  clientQuoteRole  String?
+  order            Int           @default(0)
+  status           PublishStatus @default(PUBLISHED)
+  deletedAt        DateTime?     // Soft delete
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("case_studies")
+}
+
+model Testimonial {
+  id               String        @id @default(uuid())
+  quote            String
+  author           String
+  role             String
+  organization     String
+  avatarUrl        String?
+  order            Int           @default(0)
+  status           PublishStatus @default(PUBLISHED)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("testimonials")
+}
+
+model TimelineItem {
+  id               String        @id @default(uuid())
+  day              String        // e.g. "Day 01"
+  title            String
+  description      String
+  deliverables     Json          // Array of strings
+  order            Int           @default(0)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("timeline_items")
+}
+
+model Media {
+  id               String        @id @default(uuid())
+  filename         String
+  url              String        // Public persistent URL
+  type             String        // "image" or "video"
+  mimeType         String
+  size             Int           // in bytes
+  altText          String?
+  title            String?
+  description      String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("media")
+}
+
+model Lead {
+  id               String        @id @default(uuid())
+  name             String
+  businessName     String
+  phone            String
+  email            String
+  city             String
+  businessType     String
+  website          String?
+  monthlyBudget    String
+  currentChannels  Json          // Array of strings
+  mainGrowthChallenge String?
+  status           LeadStatus    @default(NEW)
+  assignedTo       String?
+  internalNotes    String?
+  source           String        @default("Website Intake Form")
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@map("leads")
+}
+
+model GlobalSettings {
+  id               String        @id @default("default")
+  companyName      String        @default("Shanti Digital Agency")
+  shortName        String        @default("SDA")
+  tagline          String        @default("Patient Growth Systems for Healthcare & Fertility Practices")
+  email            String        @default("shantidigitalagency@gmail.com")
+  phone            String        @default("+91 98000 00000")
+  address          String        @default("Sevoke Road, Siliguri, West Bengal 734001, India")
+  webhookUrl       String?
+  webhookActive    Boolean       @default(false)
+  updatedAt        DateTime      @updatedAt
+
+  @@map("global_settings")
+}
+
+model Revision {
+  id               String        @id @default(uuid())
+  contentType      String        // e.g. "page_section", "case_study"
+  contentId        String
+  pageId           String?
+  page             Page?         @relation(fields: [pageId], references: [id], onDelete: SetNull)
+  previousValue    Json
+  newValue         Json
+  changedById      String?
+  changedBy        User?         @relation(fields: [changedById], references: [id], onDelete: SetNull)
+  description      String?
+  createdAt        DateTime      @default(now())
+
+  @@index([contentType, contentId])
+  @@map("revisions")
+}
+
+model ActivityLog {
+  id               String        @id @default(uuid())
+  action           String        // LOGIN, SAVE_DRAFT, PUBLISH, UPLOAD, UPDATE_LEAD
+  userId           String?
+  user             User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  details          Json?
+  ipAddress        String?
+  createdAt        DateTime      @default(now())
+
+  @@index([action, createdAt])
+  @@map("activity_logs")
+}
