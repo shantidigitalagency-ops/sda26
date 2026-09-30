@@ -86,6 +86,9 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         if (data.sections) {
           setContent((prev) => {
             const updated = { ...prev };
+            if (data.sections.company) {
+              updated.company = { ...updated.company, ...data.sections.company };
+            }
             if (data.sections.hero) {
               updated.home.hero = { ...updated.home.hero, ...data.sections.hero };
             }

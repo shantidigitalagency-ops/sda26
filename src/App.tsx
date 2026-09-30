@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { CmsProvider, useCms } from './cms/cmsStore';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 import { HomePage } from './pages/HomePage';
 import { HealthcarePage } from './pages/HealthcarePage';
@@ -112,6 +113,9 @@ const AppContent: React.FC = () => {
 
       {/* Quiet, Comprehensive Footer (hidden on dedicated admin page) */}
       {!isAdminRoute && <Footer onNavigate={navigate} />}
+
+      {/* Floating Instant WhatsApp Button on all public pages */}
+      {!isAdminRoute && <FloatingWhatsApp />}
     </div>
   );
 };

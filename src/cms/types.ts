@@ -82,6 +82,7 @@ export interface CmsContent {
     country: string;
     email: string;
     phone: string;
+    whatsapp?: string;
     address: string;
   };
   home: {

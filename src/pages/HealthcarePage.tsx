@@ -1,8 +1,8 @@
 import React from 'react';
 import { useCms } from '../cms/cmsStore';
 import { ConsultationForm } from '../components/ConsultationForm';
-
-const FERTILITY_IMAGE = '/src/assets/images/sda_fertility_clinic_lab_1790749566046.jpg';
+import { SmartImage } from '../components/SmartImage';
+import fertilityClinicImg from '../assets/images/sda_fertility_clinic_lab_1790749566046.jpg';
 
 interface HealthcarePageProps {
   onNavigate: (path: string) => void;
@@ -71,10 +71,11 @@ export const HealthcarePage: React.FC<HealthcarePageProps> = ({ onNavigate }) =>
 
             <div className="lg:col-span-6">
               <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
-                <img
-                  src={FERTILITY_IMAGE}
+                <SmartImage
+                  src={fertilityClinicImg}
+                  fallbackSrc="/images/sda_fertility_clinic_lab.jpg"
                   alt="Modern clean reproductive clinic and embryo lab"
-                  referrerPolicy="no-referrer"
+                  category="clinic"
                   className="w-full h-[400px] object-cover"
                 />
               </div>

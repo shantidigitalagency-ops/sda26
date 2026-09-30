@@ -1,7 +1,7 @@
 import React from 'react';
 import { ConsultationForm } from '../components/ConsultationForm';
-
-const DOCTOR_IMAGE = '/src/assets/images/sda_doctor_consultation_1790749551637.jpg';
+import { SmartImage } from '../components/SmartImage';
+import doctorHeroImg from '../assets/images/sda_doctor_consultation_1790749551637.jpg';
 
 interface ContentPageProps {
   onNavigate: (path: string) => void;
@@ -67,10 +67,11 @@ export const ContentPage: React.FC<ContentPageProps> = ({ onNavigate }) => {
 
             <div className="lg:col-span-6">
               <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
-                <img
-                  src={DOCTOR_IMAGE}
+                <SmartImage
+                  src={doctorHeroImg}
+                  fallbackSrc="/images/sda_doctor_consultation.jpg"
                   alt="Doctor consulting with medical authority"
-                  referrerPolicy="no-referrer"
+                  category="doctor"
                   className="w-full h-[440px] object-cover"
                 />
               </div>

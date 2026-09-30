@@ -1,8 +1,8 @@
 import React from 'react';
 import { useCms } from '../cms/cmsStore';
 import { ConsultationForm } from '../components/ConsultationForm';
-
-const STUDIO_IMAGE = '/src/assets/images/sda_growth_studio_siliguri_1790749575851.jpg';
+import { SmartImage } from '../components/SmartImage';
+import studioImg from '../assets/images/sda_growth_studio_siliguri_1790749575851.jpg';
 
 interface AboutPageProps {
   onNavigate: (path: string) => void;
@@ -65,10 +65,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
             <div className="lg:col-span-5">
               <div className="rounded-2xl overflow-hidden border border-neutral-200 shadow-md">
-                <img
-                  src={STUDIO_IMAGE}
+                <SmartImage
+                  src={studioImg}
+                  fallbackSrc="/images/sda_growth_studio_siliguri.jpg"
                   alt="SDA Growth Studio workspace in Siliguri"
-                  referrerPolicy="no-referrer"
+                  category="studio"
                   className="w-full h-[420px] object-cover"
                 />
               </div>

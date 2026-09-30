@@ -1,0 +1,110 @@
+{
+  "users": [
+    {
+      "id": "admin-001",
+      "username": "admin",
+      "passwordHash": "$2b$10$KZuk7YrNGmU7REbLekTIWuk7U7/bzZHzOZsFaY8WcOXro7ke10qP2",
+      "name": "SDA Administrator",
+      "role": "SUPER_ADMIN"
+    }
+  ],
+  "pageSections": {},
+  "leads": [
+    {
+      "id": "lead-sample-01",
+      "name": "Dr. A. Sengupta",
+      "businessName": "Siliguri Women Care & Fertility",
+      "phone": "+91 98320 12345",
+      "email": "drsengupta@example.com",
+      "city": "Siliguri",
+      "businessType": "IVF & Fertility Clinic",
+      "website": "https://siliguriwomencare.example.com",
+      "monthlyBudget": "₹50,000 - ₹1,00,000",
+      "currentChannels": [
+        "Meta Ads",
+        "Word of Mouth"
+      ],
+      "mainGrowthChallenge": "Getting too many non-serious callers on WhatsApp and low show-up rate for preliminary fertility workups.",
+      "status": "AUDIT_PREPARED",
+      "createdAt": "2026-09-29T06:51:49.059Z",
+      "updatedAt": "2026-09-30T06:51:49.059Z"
+    },
+    {
+      "id": "lead-sample-02",
+      "name": "Dr. Rajesh Sharma",
+      "businessName": "Advanced Ortho & Joint Clinic",
+      "phone": "+91 94340 56789",
+      "email": "drsharma.ortho@example.com",
+      "city": "Matigara, Siliguri",
+      "businessType": "Specialized Doctor / Surgeon",
+      "monthlyBudget": "₹25,000 - ₹50,000",
+      "currentChannels": [
+        "Local Doctor Referrals"
+      ],
+      "mainGrowthChallenge": "Want direct chamber consultation bookings independent of nursing home referrals.",
+      "status": "NEW",
+      "createdAt": "2026-09-30T02:51:49.059Z",
+      "updatedAt": "2026-09-30T06:51:49.059Z"
+    }
+  ],
+  "media": [
+    {
+      "id": "med-01",
+      "filename": "sda_doctor_consultation.jpg",
+      "url": "/src/assets/images/sda_doctor_consultation_1790749551637.jpg",
+      "type": "image",
+      "mimeType": "image/jpeg",
+      "size": 142000,
+      "altText": "Doctor reviewing medical cases in clinical consultation room",
+      "title": "Clinical Consultation Hero",
+      "createdAt": "2026-09-30T06:51:49.059Z",
+      "updatedAt": "2026-09-30T06:51:49.059Z"
+    },
+    {
+      "id": "med-02",
+      "filename": "sda_fertility_clinic_lab.jpg",
+      "url": "/src/assets/images/sda_fertility_clinic_lab_1790749566046.jpg",
+      "type": "image",
+      "mimeType": "image/jpeg",
+      "size": 185000,
+      "altText": "Modern embryology and IVF clinic facility interior",
+      "title": "Fertility Clinic Interior",
+      "createdAt": "2026-09-30T06:51:49.059Z",
+      "updatedAt": "2026-09-30T06:51:49.059Z"
+    },
+    {
+      "id": "med-03",
+      "filename": "sda_growth_studio_siliguri.jpg",
+      "url": "/src/assets/images/sda_growth_studio_siliguri_1790749575851.jpg",
+      "type": "image",
+      "mimeType": "image/jpeg",
+      "size": 165000,
+      "altText": "SDA Digital Operations Studio, Siliguri",
+      "title": "Siliguri Strategy Studio",
+      "createdAt": "2026-09-30T06:51:49.059Z",
+      "updatedAt": "2026-09-30T06:51:49.059Z"
+    }
+  ],
+  "activityLogs": [
+    {
+      "id": "act-01",
+      "action": "SYSTEM_BOOT",
+      "details": {
+        "note": "SDA Production Database CMS initialized"
+      },
+      "createdAt": "2026-09-30T06:51:49.059Z"
+    }
+  ],
+  "revisions": [],
+  "globalSettings": {
+    "companyName": "Shanti Digital Agency",
+    "shortName": "SDA",
+    "tagline": "Patient Growth Systems for Healthcare & Fertility Practices",
+    "email": "shantidigitalagency@gmail.com",
+    "phone": "+91 89440 83896",
+    "whatsapp": "+91 89440 83896",
+    "address": "Sevoke Road, Siliguri, West Bengal 734001, India",
+    "webhookUrl": "https://hooks.zapier.com/hooks/catch/sample/sda_crm_inbox",
+    "webhookActive": true
+  }
+}

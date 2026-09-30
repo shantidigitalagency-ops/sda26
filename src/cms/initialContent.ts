@@ -10,7 +10,8 @@ export const initialContent: CmsContent = {
     region: 'West Bengal',
     country: 'India',
     email: 'shantidigitalagency@gmail.com',
-    phone: '+91 98000 00000',
+    phone: '+91 89440 83896',
+    whatsapp: '+91 89440 83896',
     address: 'Sevoke Road, Siliguri, West Bengal 734001, India',
   },
   home: {

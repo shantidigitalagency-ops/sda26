@@ -102,8 +102,8 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
   };
 
   const [activeSection, setActiveSection] = useState<
-    'leads' | 'hero' | 'problem' | 'system' | 'healthcare' | 'capabilities' | 'casestudies' | 'timeline' | 'media' | 'webhook' | 'backup'
-  >('hero');
+    'leads' | 'company' | 'hero' | 'problem' | 'system' | 'healthcare' | 'capabilities' | 'casestudies' | 'timeline' | 'media' | 'webhook' | 'backup'
+  >('company');
 
   const [formData, setFormData] = useState<CmsContent>(content);
   const [leadStatusFilter, setLeadStatusFilter] = useState<'all' | 'new' | 'contacted' | 'audit_prepared'>('all');
@@ -128,6 +128,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
       updateContent(formData);
 
       // 2. Publish all modified sections to PostgreSQL database
+      await saveAndPublishSection('home', 'company', formData.company);
       await saveAndPublishSection('home', 'hero', formData.home.hero);
       await saveAndPublishSection('home', 'problem', formData.home.problem);
       await saveAndPublishSection('home', 'system', formData.home.system);
@@ -414,6 +415,15 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
             </div>
 
             <button
+              onClick={() => setActiveSection('company')}
+              className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                activeSection === 'company' ? 'bg-neutral-900 text-white' : 'text-neutral-700 hover:bg-neutral-100'
+              }`}
+            >
+              Company &amp; Contact Channels
+            </button>
+
+            <button
               onClick={() => setActiveSection('hero')}
               className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition-all cursor-pointer ${
                 activeSection === 'hero' ? 'bg-neutral-900 text-white' : 'text-neutral-700 hover:bg-neutral-100'
@@ -669,6 +679,106 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onNavigate }) => {
                     ))}
                   </div>
                 )}
+              </div>
+            )}
+
+            {/* SECTION: COMPANY & CONTACT CHANNELS */}
+            {activeSection === 'company' && (
+              <div className="bg-white rounded-2xl border border-neutral-200/90 p-6 sm:p-8 shadow-xs space-y-6">
+                <div className="border-b border-neutral-200 pb-4">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-800">
+                    Live Practice Information
+                  </span>
+                  <h2 className="text-xl font-bold text-neutral-900 mt-1">Company &amp; Communication Channels</h2>
+                  <p className="text-xs text-neutral-500 mt-0.5">
+                    Controls phone numbers, WhatsApp lines, email, and physical office location rendered across the public website.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Direct Phone Line</label>
+                      <input
+                        type="text"
+                        value={formData.company.phone}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            company: { ...formData.company, phone: e.target.value },
+                          })
+                        }
+                        className="w-full text-xs p-2.5 border rounded-lg bg-neutral-50/50 font-semibold text-neutral-900"
+                        placeholder="+91 89440 83896"
+                      />
+                      <p className="text-[11px] text-neutral-400 mt-1">Primary phone number: 8944083896</p>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 mb-1.5">WhatsApp Inquiry Number</label>
+                      <input
+                        type="text"
+                        value={formData.company.whatsapp || '+91 89440 83896'}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            company: { ...formData.company, whatsapp: e.target.value },
+                          })
+                        }
+                        className="w-full text-xs p-2.5 border rounded-lg bg-neutral-50/50 font-semibold text-emerald-800"
+                        placeholder="+91 89440 83896"
+                      />
+                      <p className="text-[11px] text-neutral-400 mt-1">Direct click-to-WhatsApp recipient number</p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Official Contact Email</label>
+                      <input
+                        type="email"
+                        value={formData.company.email}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            company: { ...formData.company, email: e.target.value },
+                          })
+                        }
+                        className="w-full text-xs p-2.5 border rounded-lg bg-neutral-50/50"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Headquarters &amp; Hub Location</label>
+                      <input
+                        type="text"
+                        value={formData.company.address}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            company: { ...formData.company, address: e.target.value },
+                          })
+                        }
+                        className="w-full text-xs p-2.5 border rounded-lg bg-neutral-50/50"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-neutral-700 mb-1.5">Primary Practice Tagline</label>
+                    <input
+                      type="text"
+                      value={formData.company.tagline}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          company: { ...formData.company, tagline: e.target.value },
+                        })
+                      }
+                      className="w-full text-xs p-2.5 border rounded-lg bg-neutral-50/50"
+                    />
+                  </div>
+                </div>
               </div>
             )}
 
